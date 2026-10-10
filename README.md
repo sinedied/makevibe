@@ -21,8 +21,10 @@ is plain HTML, CSS, and JavaScript, so it stays easy to inspect, understand, and
 - **Kid-sized conversations:** one short question at a time, in the child's chosen
   language and tone.
 - **Privacy-aware onboarding:** stores only a nickname, age range, language, tone, and
-  interests in a private repository.
-- **Small, understandable projects:** every app has exactly four files.
+  interests in a private repository. Projects exclude personal details beyond a first
+  name or nickname the child explicitly chooses to use.
+- **Small first, structured when needed:** every app starts with four readable files and
+  adds modules only after the child confirms the extra complexity.
 - **Browser-only:** no servers, databases, project packages, accounts, ads, analytics, or
   personal-data collection.
 - **Easy to undo:** every coherent change gets a clear Git commit.
@@ -40,7 +42,7 @@ is plain HTML, CSS, and JavaScript, so it stays easy to inspect, understand, and
 3. Say **"Let's get started"**. The onboarding skill asks a few short questions.
 4. Say what you want to make, or ask for three ideas.
 
-MakeVibe creates each app in `projects/<project-name>/` with:
+MakeVibe starts each app in `projects/<project-name>/` with:
 
 ```text
 index.html    page structure and words
@@ -49,8 +51,29 @@ script.js     interactions
 README.md     what the project does and what was learned
 ```
 
-Those are the only files an app can use. Browser libraries may be loaded from a trusted
-HTTPS CDN when plain JavaScript is not enough.
+Most ideas fit this **simple project** layout. Either project type may add `assets/` when
+it needs browser-safe images, sounds, video, fonts, 3D models, or data.
+
+When an idea clearly needs more structure, MakeVibe explains that it may take longer and
+asks before turning it into a **complex project**. A complex project keeps the same four
+root entry files and adds `modules/` for nested HTML, CSS, and JavaScript. It is a
+refactor of the same starter, not a second template.
+
+Around 5,000 lines of HTML, CSS, and JavaScript is a prompt to discuss readability and
+possible refactoring, not a strict build quota.
+
+> [!CAUTION]
+> Never put PII such as a full name, exact age or birthday, address, school, phone
+> number, email, account name, precise location, identifying photo, or embedded location
+> metadata in a project. A first name or nickname is allowed only when the child
+> explicitly chooses to use it, and publication makes that name public.
+
+Browser libraries may be loaded from a trusted HTTPS CDN when plain JavaScript is not
+enough.
+
+> [!IMPORTANT]
+> GitHub Pages cannot serve `index.html` as a fallback for arbitrary SPA paths. Apps with
+> client-side views use hash URLs such as `#/gallery`, which still work after a reload.
 
 ## Projects
 
@@ -110,7 +133,13 @@ AGENTS.md
 
 projects/
   published-projects.json  the public deployment allowlist
-  <project-name>/           one four-file app
+  <project-name>/
+    index.html              stable page entry
+    styles.css              stable style entry
+    script.js               stable JavaScript entry
+    README.md               project guide and module map
+    assets/                 optional media and data
+    modules/                optional, confirmed complex structure
 
 vite.config.js
   validates every project and builds only published ones

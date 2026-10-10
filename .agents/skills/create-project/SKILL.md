@@ -1,6 +1,6 @@
 ---
 name: create-project
-description: Use when the child wants to start, make, or create a new MakeVibe web app, game, presentation, visualization, interactive story, learning tool, or utility. Creates exactly one project from the bundled four-file template. Do not use to edit an existing project or publish one.
+description: Use when the child wants to start, make, or create a new MakeVibe web app, or when an existing simple project needs a confirmed conversion to a structured modules folder. Always starts from the bundled four-file template and may add assets when needed. Do not use for ordinary edits to an existing project or to publish one.
 ---
 
 # Create a project
@@ -18,36 +18,60 @@ Create one safe browser app from `assets/project-template/`.
    - a countdown, visualization, quiz, learning tool, or simple utility.
 3. Ask one short question at a time until the app has a title and a one-sentence goal.
    Prefer a small first version that can grow later.
-4. Create a lowercase kebab-case slug using only `a-z`, `0-9`, and single hyphens. It
+4. Decide whether the requested first version is likely to need many distinct views,
+   systems, or roughly 5,000 lines of code. Default to a simple project. If it is
+   clearly complex, explain in one short message that it will take longer and contain
+   more parts, then ask for confirmation. If the child declines, offer a smaller first
+   version or milestones. In unattended or autopilot work, do not add `modules/` without
+   a prior interactive confirmation for this specific project.
+5. Create a lowercase kebab-case slug using only `a-z`, `0-9`, and single hyphens. It
    must match `^[a-z0-9]+(?:-[a-z0-9]+)*$`. If `projects/<slug>/` exists, choose another
    slug with the child; never overwrite it.
-5. Copy the four files from `assets/project-template/` into `projects/<slug>/`. Do not
+6. Copy the four files from `assets/project-template/` into `projects/<slug>/`. Do not
    copy the template folder itself and do not modify the bundled template.
-6. Replace every `{{PLACEHOLDER}}` in the new files. Localize visible text and
+7. Replace every `{{PLACEHOLDER}}` in the new files. Localize visible text and
    `README.md`; use a short BCP 47 language code in the HTML `lang` attribute.
-7. Build the smallest useful first version within `index.html`, `styles.css`,
-   `script.js`, and `README.md`. Do not add files, folders, packages, APIs, or sensitive
-   browser capabilities.
-8. Update only the section between `<!-- makevibe-projects:start -->` and
+8. Build the smallest useful first version:
+   - For a simple project, use the four root files.
+   - For a confirmed complex project, keep those files as stable entry points and add
+     only the HTML, CSS, and JavaScript structure actually needed under `modules/`.
+   - For either type, add `assets/` only when real browser-safe media or data is needed.
+   Do not add packages, APIs, or sensitive browser capabilities.
+9. If the app has multiple client-side views, use hash navigation such as `#/play`.
+   Do not use history-based routes that need a server fallback on page reload.
+10. Update the project `README.md` with its layout and, for a complex project, a short
+    map of its main modules.
+11. Update only the section between `<!-- makevibe-projects:start -->` and
    `<!-- makevibe-projects:end -->` in the root `README.md`. Add one row linking to the
    project folder with status `Local only`. Remove the empty-state row when adding the
    first project.
-9. Confirm no `{{PLACEHOLDER}}` remains, run `npm run build`, and inspect the diff.
-10. Commit only the new project folder and root `README.md` with
+12. Confirm no `{{PLACEHOLDER}}` remains, run `npm run build`, and inspect the diff.
+13. Commit only the new project folder and root `README.md` with
     `feat(<slug>): create project`.
-11. Tell the child, in one short message, that they can run `npm run dev` and open
+14. Tell the child, in one short message, that they can run `npm run dev` and open
     `http://localhost:5173/<slug>/`.
 
-## Project file roles
+## Convert an existing project
 
-- `index.html`: structure and visible text.
-- `styles.css`: layout, colors, typography, and motion.
-- `script.js`: browser interaction.
-- `README.md`: a short explanation of the project and what the child learned.
+Use this procedure when a simple project approaches 5,000 physical lines of HTML, CSS,
+and JavaScript or becomes difficult to navigate.
+
+1. Describe the readability problem and name the main pieces that could move.
+2. Explain briefly that a complex structure has more parts and may take longer to work
+   with. Ask for explicit confirmation before creating `modules/`.
+3. If confirmed, make one focused refactor. Keep `index.html`, `styles.css`, and
+   `script.js` as stable entries that reference the new modules.
+4. Update the project README with a compact module map, build, and commit the refactor.
+5. If declined, keep the simple layout and improve it without adding folders.
 
 ## Gotchas
 
-- Do not put the nickname, age range, or other profile data in the project.
+- Never put PII in source, data, filenames, or media metadata. A first name or nickname
+  is allowed only when the child explicitly asks to use it in this app.
+- An `assets/` folder is optional for both project types and does not require complexity
+  confirmation. Never create empty folders in advance.
+- `modules/` defines a complex project. It is not a second template.
 - A CDN script is allowed only when it is necessary and uses HTTPS. Prefer plain browser
   features for the first version.
+- Use hash routing for SPA navigation on GitHub Pages.
 - Creating a project does not approve it for publication.

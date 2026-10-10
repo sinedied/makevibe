@@ -1,5 +1,5 @@
-import { readFileSync, readdirSync } from "node:fs";
-import { resolve } from "node:path";
+import { cpSync, existsSync, readFileSync, readdirSync } from "node:fs";
+import { extname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 
@@ -10,12 +10,56 @@ const virtualEntry = "virtual:makevibe-index";
 const resolvedVirtualEntry = `\0${virtualEntry}`;
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const languagePattern = /^[a-z]{2,3}(?:-[A-Za-z0-9]{2,8})*$/;
-const allowedProjectFiles = [
+const requiredProjectFiles = [
   "README.md",
   "index.html",
   "script.js",
   "styles.css",
 ];
+const optionalProjectDirectories = new Set(["assets", "modules"]);
+const moduleExtensions = new Set([".css", ".html", ".js"]);
+const assetExtensions = new Set([
+  ".aac",
+  ".avif",
+  ".csv",
+  ".geojson",
+  ".gif",
+  ".glb",
+  ".gltf",
+  ".ico",
+  ".jpeg",
+  ".jpg",
+  ".json",
+  ".m4a",
+  ".mp3",
+  ".mp4",
+  ".mtl",
+  ".obj",
+  ".ogg",
+  ".ogv",
+  ".png",
+  ".svg",
+  ".txt",
+  ".vtt",
+  ".wav",
+  ".webm",
+  ".webp",
+  ".woff",
+  ".woff2",
+]);
+const textAssetExtensions = new Set([
+  ".csv",
+  ".geojson",
+  ".gltf",
+  ".json",
+  ".mtl",
+  ".obj",
+  ".svg",
+  ".txt",
+  ".vtt",
+]);
+const codeExtensions = new Set([".css", ".html", ".js"]);
+const simpleProjectLineWarning = 5000;
 
 function fail(message) {
   throw new Error(`[MakeVibe] ${message}`);
@@ -141,23 +185,68 @@ function validateProjectFolders(publishedProjects) {
 
     const projectRoot = resolve(projectsRoot, entry.name);
     const projectEntries = readdirSync(projectRoot, { withFileTypes: true });
-    const projectFiles = projectEntries.map(({ name }) => name).sort();
+    const rootFiles = new Set();
+    const rootDirectories = new Set();
+    let codeLineCount = 0;
 
-    if (projectEntries.some((projectEntry) => !projectEntry.isFile())) {
-      fail(`Project "${entry.name}" cannot contain folders or links.`);
+    for (const projectEntry of projectEntries) {
+      const projectPath = `${entry.name}/${projectEntry.name}`;
+
+      if (projectEntry.isFile()) {
+        if (!requiredProjectFiles.includes(projectEntry.name)) {
+          fail(`Unexpected root file "projects/${projectPath}".`);
+        }
+
+        rootFiles.add(projectEntry.name);
+        const content = readFileSync(resolve(projectRoot, projectEntry.name), "utf8");
+        validatePlaceholders(entry.name, projectEntry.name, content);
+
+        if (codeExtensions.has(extname(projectEntry.name).toLowerCase())) {
+          codeLineCount += countLines(content);
+        }
+        continue;
+      }
+
+      if (projectEntry.isDirectory()) {
+        if (!optionalProjectDirectories.has(projectEntry.name)) {
+          fail(`Unexpected root folder "projects/${projectPath}".`);
+        }
+
+        rootDirectories.add(projectEntry.name);
+        continue;
+      }
+
+      fail(`Links and special files are not allowed at "projects/${projectPath}".`);
     }
 
-    if (projectFiles.join(",") !== allowedProjectFiles.join(",")) {
+    const missingFiles = requiredProjectFiles.filter(
+      (fileName) => !rootFiles.has(fileName),
+    );
+    if (missingFiles.length > 0) {
       fail(
-        `Project "${entry.name}" must contain exactly: ${allowedProjectFiles.join(", ")}.`,
+        `Project "${entry.name}" is missing required root files: ${missingFiles.join(", ")}.`,
       );
     }
 
-    for (const fileName of projectFiles) {
-      const content = readFileSync(resolve(projectRoot, fileName), "utf8");
-      if (/\{\{[A-Z0-9_]+\}\}/.test(content)) {
-        fail(`Project "${entry.name}/${fileName}" has an unreplaced placeholder.`);
-      }
+    if (rootDirectories.has("modules")) {
+      codeLineCount += validateNestedDirectory(
+        entry.name,
+        "modules",
+        moduleExtensions,
+      );
+    }
+
+    if (rootDirectories.has("assets")) {
+      validateNestedDirectory(entry.name, "assets", assetExtensions);
+    }
+
+    if (
+      !rootDirectories.has("modules") &&
+      codeLineCount > simpleProjectLineWarning
+    ) {
+      console.warn(
+        `[MakeVibe] Simple project "${entry.name}" has ${codeLineCount} lines of HTML, CSS, and JavaScript. Consider confirming a refactor into modules/.`,
+      );
     }
 
     projectSlugs.add(entry.name);
@@ -170,6 +259,90 @@ function validateProjectFolders(publishedProjects) {
       );
     }
   }
+}
+
+function validateNestedDirectory(projectSlug, directoryName, allowedExtensions) {
+  const directoryRoot = resolve(projectsRoot, projectSlug, directoryName);
+  let codeLineCount = 0;
+
+  function walk(currentDirectory, relativeDirectory) {
+    const entries = readdirSync(currentDirectory, { withFileTypes: true });
+
+    for (const entry of entries) {
+      const relativePath = `${relativeDirectory}/${entry.name}`;
+      const fullPath = resolve(currentDirectory, entry.name);
+
+      if (entry.isDirectory()) {
+        walk(fullPath, relativePath);
+        continue;
+      }
+
+      if (!entry.isFile()) {
+        fail(
+          `Links and special files are not allowed at "projects/${projectSlug}/${relativePath}".`,
+        );
+      }
+
+      const extension = extname(entry.name).toLowerCase();
+      if (!allowedExtensions.has(extension)) {
+        fail(
+          `File type "${extension || "(none)"}" is not allowed at "projects/${projectSlug}/${relativePath}".`,
+        );
+      }
+
+      const isTextFile =
+        directoryName === "modules" || textAssetExtensions.has(extension);
+      if (!isTextFile) {
+        continue;
+      }
+
+      const content = readFileSync(fullPath, "utf8");
+      validatePlaceholders(projectSlug, relativePath, content);
+
+      if (directoryName === "modules") {
+        codeLineCount += countLines(content);
+      }
+
+      if (extension === ".svg") {
+        validateSvg(projectSlug, relativePath, content);
+      }
+    }
+  }
+
+  walk(directoryRoot, directoryName);
+  return codeLineCount;
+}
+
+function validatePlaceholders(projectSlug, relativePath, content) {
+  if (/\{\{[A-Z0-9_]+\}\}/.test(content)) {
+    fail(
+      `Project "${projectSlug}/${relativePath}" has an unreplaced placeholder.`,
+    );
+  }
+}
+
+function validateSvg(projectSlug, relativePath, content) {
+  if (
+    /<script\b/i.test(content) ||
+    /<foreignObject\b/i.test(content) ||
+    /\son[a-z]+\s*=/i.test(content) ||
+    /javascript\s*:/i.test(content) ||
+    /data\s*:\s*text\/html/i.test(content) ||
+    /<!ENTITY\b/i.test(content)
+  ) {
+    fail(
+      `SVG asset "${projectSlug}/${relativePath}" contains active content.`,
+    );
+  }
+}
+
+function countLines(content) {
+  if (content.length === 0) {
+    return 0;
+  }
+
+  const lines = content.split(/\r\n|\r|\n/);
+  return lines.at(-1) === "" ? lines.length - 1 : lines.length;
 }
 
 function escapeHtml(value) {
@@ -267,6 +440,22 @@ function makeIndexPlugin(manifest) {
         fileName: "index.html",
         source: renderPublishedIndex(manifest),
       });
+    },
+    writeBundle() {
+      for (const project of manifest.projects) {
+        for (const directoryName of optionalProjectDirectories) {
+          const source = resolve(projectsRoot, project.slug, directoryName);
+          if (!existsSync(source)) {
+            continue;
+          }
+
+          cpSync(
+            source,
+            resolve(repositoryRoot, "dist", project.slug, directoryName),
+            { recursive: true },
+          );
+        }
+      }
     },
   };
 }

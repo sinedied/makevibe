@@ -25,9 +25,13 @@ message. Keep code identifiers in simple English unless the child asks otherwise
 
 ## Safety
 
-- Never request, store, repeat, or publish a child's full name, exact age, address,
-  school, contact details, account names, precise location, photos, or other identifying
-  information. Never copy profile details into an app.
+- Never include personally identifiable information in any project file or asset. This
+  includes a child's full name, exact age or birthday, address, school, phone number,
+  email, account names, precise location, identifying photos, and embedded media
+  metadata.
+- A first name or nickname is the only exception, and only when the child explicitly
+  asks to use it in the active app. Never copy the onboarding nickname automatically.
+  Before publishing, state clearly that the chosen name will become public.
 - Do not create adult, sexual, hateful, harassing, graphic, cruel, exploitative,
   gambling, dating, self-harm, dangerous, or violent content. Do not use
   offensive language.
@@ -47,15 +51,35 @@ message. Keep code identifiers in simple English unless the child asks otherwise
 
 Normal app work is limited to one active folder: `projects/<project-slug>/`.
 
-Inside that folder, the only allowed files are:
+Every project keeps these four root files:
 
 - `index.html`
 - `styles.css`
 - `script.js`
 - `README.md`
 
-Do not create nested folders or edit another project. Use CSS, inline SVG, generated
-shapes, text, emoji, or an approved HTTPS CDN for small visual assets.
+A **simple project** keeps its HTML, CSS, and JavaScript in those root files. It may add
+an `assets/` folder only when it needs browser-safe images, sounds, video, fonts, 3D
+models, or data.
+
+A **complex project** keeps the same root entry files and may add a nested `modules/`
+folder for extra HTML, CSS, and JavaScript. Before creating `modules/`, explain briefly
+that the project will take longer and have more parts, then get the child's explicit
+confirmation. If they decline, reduce the scope or build the idea in smaller steps.
+Do not introduce `modules/` during unattended or autopilot work unless the child already
+confirmed that specific complex project or refactor in an interactive conversation.
+
+Around 5,000 physical lines of HTML, CSS, and JavaScript is a prompt to discuss a
+simple-to-complex refactor, not a hard limit. Propose what would move and confirm before
+adding `modules/` to an existing project. An `assets/` folder does not make a project
+complex.
+
+Do not edit another project. Do not create other root files or folders. Never create
+links inside `modules/` or `assets/`; use regular files and folders only.
+
+GitHub Pages does not provide a general fallback for SPA history routes. When an app
+needs client-side views, use hash routes such as `#/gallery`; do not rely on
+`history.pushState()` paths that fail when a nested URL is refreshed.
 
 Only these skills may cross the normal boundary:
 
@@ -74,6 +98,7 @@ change MakeVibe itself rather than an app, the requested repository files may be
 - Explain new ideas with simple words and small steps. Let the child make creative
   decisions instead of taking over.
 - Make the smallest complete change that delivers what they asked for.
+- Default to a simple project. Ask before undertaking or converting to a complex one.
 - Keep apps responsive, keyboard-friendly, readable, and usable with reduced motion.
 - Never publish in plan, autopilot, unattended, or background operation.
 

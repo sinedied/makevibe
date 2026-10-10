@@ -36,7 +36,9 @@ rules.
 
 ## Gotchas
 
-- A Pages site can be public even when its source repository is private. Profile data
-  must never appear in project files, the root README, or the published build.
+- A Pages site can be public even when its source repository is private. Never copy
+  profile data into a project automatically. A first name or nickname may appear only
+  when the child explicitly asks to use it in that app, with a separate warning before
+  publication.
 - Do not infer age, language, or identity from writing style.
 - Onboarding consent is not publishing consent.
