@@ -25,6 +25,8 @@ is plain HTML, CSS, and JavaScript, so it stays easy to inspect, understand, and
   name or nickname the child explicitly chooses to use.
 - **Small first, structured when needed:** every app starts with four readable files and
   adds modules only after the child confirms the extra complexity.
+- **Child-led design:** the child chooses the app's visual direction while MakeVibe
+  applies responsive, accessible defaults.
 - **Browser-only:** no servers, databases, project packages, accounts, ads, analytics, or
   personal-data collection.
 - **Easy to undo:** every coherent change gets a clear Git commit.
@@ -130,6 +132,7 @@ AGENTS.md
 .agents/skills/
   onboarding/       private, child-friendly setup
   create-project/   project workflow, starter asset, and curated library reference
+  design-project/   child-led visual direction, polish, and responsive defaults
   publish-project/  explicit public approval and unpublishing
 
 projects/

@@ -31,7 +31,12 @@ Create one safe browser app from `assets/project-template/`.
    copy the template folder itself and do not modify the bundled template.
 7. Replace every `{{PLACEHOLDER}}` in the new files. Localize visible text and
    `README.md`; use a short BCP 47 language code in the HTML `lang` attribute.
-8. Build the smallest useful first version:
+8. Use the `design-project` skill to establish the visual direction before building the
+   first version. The title and one-sentence goal are already known, and the copied
+   project files now provide the active project context that skill reads. If the child
+   already supplied a clear visual brief, follow it without asking another style
+   question.
+9. Build the smallest useful first version:
    - For a simple project, use the four root files.
    - For a confirmed complex project, keep those files as stable entry points and add
      only the HTML, CSS, and JavaScript structure actually needed under `modules/`.
@@ -40,18 +45,18 @@ Create one safe browser app from `assets/project-template/`.
    - If a library may materially reduce complexity, first confirm plain browser APIs are
      not simpler, then load `references/libraries.md`.
    Do not add packages, APIs, or sensitive browser capabilities.
-9. If the app has multiple client-side views, use hash navigation such as `#/play`.
+10. If the app has multiple client-side views, use hash navigation such as `#/play`.
    Do not use history-based routes that need a server fallback on page reload.
-10. Update the project `README.md` with its layout and, for a complex project, a short
+11. Update the project `README.md` with its layout and, for a complex project, a short
     map of its main modules.
-11. Update only the section between `<!-- makevibe-projects:start -->` and
+12. Update only the section between `<!-- makevibe-projects:start -->` and
    `<!-- makevibe-projects:end -->` in the root `README.md`. Add one row linking to the
    project folder with status `Local only`. Remove the empty-state row when adding the
    first project.
-12. Confirm no `{{PLACEHOLDER}}` remains, run `npm run build`, and inspect the diff.
-13. Commit only the new project folder and root `README.md` with
+13. Confirm no `{{PLACEHOLDER}}` remains, run `npm run build`, and inspect the diff.
+14. Commit only the new project folder and root `README.md` with
     `feat(<slug>): create project`.
-14. Tell the child, in one short message, that they can run `npm run dev` and open
+15. Tell the child, in one short message, that they can run `npm run dev` and open
     `http://localhost:5173/<slug>/`.
 
 ## Convert an existing project
