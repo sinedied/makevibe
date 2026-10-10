@@ -32,7 +32,7 @@ button {
   border: 3px solid #253237;
   border-radius: 1.5rem 0.4rem 1.5rem 0.4rem;
   background: #fffdf8;
-  box-shadow: 0.7rem 0.7rem 0 #253237;
+  box-shadow: 0.7rem 0.7rem 1.2rem rgb(37 50 55 / 22%);
 }
 
 h1,
@@ -56,10 +56,8 @@ h1 {
 
 .play-area {
   margin-top: 2rem;
-  padding: 1.25rem;
-  border: 2px dashed #457b9d;
-  border-radius: 1rem;
-  background: #edf6f9;
+  padding-top: 1.25rem;
+  border-top: 2px dashed #457b9d;
 }
 
 .play-area button {
@@ -69,14 +67,14 @@ h1 {
   border-radius: 999px;
   color: #fffdf8;
   background: #bc4749;
-  box-shadow: 0.2rem 0.2rem 0 #253237;
+  box-shadow: 0.2rem 0.2rem 0.45rem rgb(37 50 55 / 28%);
   cursor: pointer;
   font-weight: 800;
 }
 
 .play-area button:hover {
   transform: translate(-0.1rem, -0.1rem);
-  box-shadow: 0.3rem 0.3rem 0 #253237;
+  box-shadow: 0.3rem 0.3rem 0.6rem rgb(37 50 55 / 28%);
 }
 
 .play-area button:focus-visible {
