@@ -43,9 +43,12 @@ message. Keep code identifiers in simple English unless the child asks otherwise
   sensors, or similar sensitive browser capabilities.
 - Apps must work entirely in the browser. Do not add server code, databases, secrets,
   package installation, or build configuration inside a project.
-- HTTPS CDN dependencies are allowed only when needed for a browser library. Do not add
-  API calls, `fetch`, XMLHttpRequest, WebSocket connections, or code loaded from unknown
-  sources.
+- Prefer browser APIs before adding a dependency. When a library materially reduces
+  complexity, use the create-project skill's library reference, verify its current stable
+  version and free open-source license, and pin that exact version on a reputable HTTPS
+  CDN. Never use `@latest` or an unversioned URL.
+- Do not add API calls, `fetch`, XMLHttpRequest, WebSocket connections, paid services, or
+  code from unknown sources.
 
 ## Project boundaries
 

@@ -36,6 +36,8 @@ Create one safe browser app from `assets/project-template/`.
    - For a confirmed complex project, keep those files as stable entry points and add
      only the HTML, CSS, and JavaScript structure actually needed under `modules/`.
    - For either type, add `assets/` only when real browser-safe media or data is needed.
+   - If a library may materially reduce complexity, first confirm plain browser APIs are
+     not simpler, then load `references/libraries.md`.
    Do not add packages, APIs, or sensitive browser capabilities.
 9. If the app has multiple client-side views, use hash navigation such as `#/play`.
    Do not use history-based routes that need a server fallback on page reload.
@@ -71,7 +73,8 @@ and JavaScript or becomes difficult to navigate.
 - An `assets/` folder is optional for both project types and does not require complexity
   confirmation. Never create empty folders in advance.
 - `modules/` defines a complex project. It is not a second template.
-- A CDN script is allowed only when it is necessary and uses HTTPS. Prefer plain browser
-  features for the first version.
+- Use a library only when it meaningfully helps. Verify its current stable version and
+  free open-source license, then pin that exact version on a reputable HTTPS CDN. Never
+  use `@latest`.
 - Use hash routing for SPA navigation on GitHub Pages.
 - Creating a project does not approve it for publication.

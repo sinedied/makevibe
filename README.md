@@ -68,8 +68,9 @@ possible refactoring, not a strict build quota.
 > metadata in a project. A first name or nickname is allowed only when the child
 > explicitly chooses to use it, and publication makes that name public.
 
-Browser libraries may be loaded from a trusted HTTPS CDN when plain JavaScript is not
-enough.
+MakeVibe prefers plain browser features. When a library clearly helps, its compact agent
+reference suggests free open-source options loaded from a reputable HTTPS CDN with an
+exact stable version.
 
 > [!IMPORTANT]
 > GitHub Pages cannot serve `index.html` as a fallback for arbitrary SPA paths. Apps with
@@ -128,7 +129,7 @@ AGENTS.md
 
 .agents/skills/
   onboarding/       private, child-friendly setup
-  create-project/   new-project workflow and four-file starter asset
+  create-project/   project workflow, starter asset, and curated library reference
   publish-project/  explicit public approval and unpublishing
 
 projects/

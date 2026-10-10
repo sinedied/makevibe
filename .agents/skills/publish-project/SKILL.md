@@ -22,7 +22,8 @@ deployment artifact.
      app.
    - There are no forms that send data, accounts, payments, ads, analytics, trackers,
      external APIs, `fetch`, XMLHttpRequest, WebSocket, or sensitive browser permissions.
-   - Any dependency is a necessary browser library loaded from a reputable HTTPS CDN.
+   - Every dependency is necessary, free and open source, and loaded from a reputable
+     HTTPS CDN with an exact stable version. Reject `@latest` and unversioned URLs.
    - Assets are appropriate, owned or safe to reuse, free of identifying metadata, and
      contain no active scripts or unexpected external content.
    - Multi-view SPA navigation uses URL hashes and does not depend on server fallback
