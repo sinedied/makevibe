@@ -1,0 +1,114 @@
+:root {
+  color: #253237;
+  background: #f6f1e7;
+  font-family: "Trebuchet MS", "Avenir Next", sans-serif;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background:
+    radial-gradient(circle at 20% 15%, #ffd166 0 4rem, transparent 4.1rem),
+    radial-gradient(circle at 85% 85%, #7bdff2 0 6rem, transparent 6.1rem),
+    #f6f1e7;
+}
+
+button {
+  font: inherit;
+}
+
+.app {
+  width: min(42rem, 100%);
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+  border: 3px solid #253237;
+  border-radius: 1.5rem 0.4rem 1.5rem 0.4rem;
+  background: #fffdf8;
+  box-shadow: 0.7rem 0.7rem 0 #253237;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: #bc4749;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  max-width: 14ch;
+  margin-bottom: 1rem;
+  font-size: clamp(2.5rem, 9vw, 5rem);
+  line-height: 0.95;
+}
+
+.intro {
+  max-width: 48ch;
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+.play-area {
+  margin-top: 2rem;
+  padding: 1.25rem;
+  border: 2px dashed #457b9d;
+  border-radius: 1rem;
+  background: #edf6f9;
+}
+
+.play-area button {
+  min-height: 3rem;
+  padding: 0.65rem 1.1rem;
+  border: 2px solid #253237;
+  border-radius: 999px;
+  color: #fffdf8;
+  background: #bc4749;
+  box-shadow: 0.2rem 0.2rem 0 #253237;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.play-area button:hover {
+  transform: translate(-0.1rem, -0.1rem);
+  box-shadow: 0.3rem 0.3rem 0 #253237;
+}
+
+.play-area button:focus-visible {
+  outline: 4px solid #ffd166;
+  outline-offset: 3px;
+}
+
+.play-area button:active {
+  transform: translate(0.15rem, 0.15rem);
+  box-shadow: none;
+}
+
+.message {
+  min-height: 1.5em;
+  margin: 1rem 0 0;
+  font-weight: 800;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="{{LANGUAGE_CODE}}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{{PROJECT_DESCRIPTION}}" />
+    <title>{{PROJECT_TITLE}}</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <p class="eyebrow">{{WELCOME_LABEL}}</p>
+      <h1>{{PROJECT_TITLE}}</h1>
+      <p class="intro">{{PROJECT_DESCRIPTION}}</p>
+
+      <section class="play-area" aria-labelledby="try-it-title">
+        <h2 id="try-it-title">{{TRY_IT_TITLE}}</h2>
+        <p>{{TRY_IT_TEXT}}</p>
+        <button
+          id="action-button"
+          type="button"
+        >
+          {{BUTTON_LABEL}}
+        </button>
+        <p id="message" class="message" aria-live="polite" hidden>
+          {{BUTTON_MESSAGE}}
+        </p>
+      </section>
+    </main>
+
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>

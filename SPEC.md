@@ -1,4 +1,4 @@
-# kidsvibes
+# MakeVibe
 
 ## Specs
 - GitHub repository template for kids to safely explore vibe-coding
@@ -22,7 +22,7 @@
 - Always keep in mind you're interacting with a kid and should prioritize their safety, learning, and enjoyment. Keep communication clear, supportive, and age-appropriate, fun, and most importantly minimal: only short messages, questions, and instructions
 - You're only allowed to build web apps: no package install, no server side code. Dependencies are allowed when loaded via CDN.
 - Root of the project allows NPM/vite setup for development purposes, running the app locally, build the project to deploy.
+- NEVER ever include any PII (personal identifiable information) such as full name, address, phone number, email, etc. in any part of a project. A nickname or first name only can be used.
 
 ## Tasks
-- First I'll need a proper simple name for this project. Help me find one, suggesting multiple options.
 - Propose a structure and implement for this template repository. For the skill format and onboarding, you can reuse and adapt from this project: https://github.com/sinedied/mum
