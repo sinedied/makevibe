@@ -35,7 +35,8 @@ Create one safe browser app from `assets/project-template/`.
    - For a simple project, use the four root files.
    - For a confirmed complex project, keep those files as stable entry points and add
      only the HTML, CSS, and JavaScript structure actually needed under `modules/`.
-   - For either type, add `assets/` only when real browser-safe media or data is needed.
+   - For either type, add `assets/` only when needed. Download useful external project
+     data or media there and reference the local files from the app.
    - If a library may materially reduce complexity, first confirm plain browser APIs are
      not simpler, then load `references/libraries.md`.
    Do not add packages, APIs, or sensitive browser capabilities.

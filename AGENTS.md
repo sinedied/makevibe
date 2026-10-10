@@ -47,8 +47,11 @@ message. Keep code identifiers in simple English unless the child asks otherwise
   complexity, use the create-project skill's library reference, verify its current stable
   version and free open-source license, and pin that exact version on a reputable HTTPS
   CDN. Never use `@latest` or an unversioned URL.
-- Do not add API calls, `fetch`, XMLHttpRequest, WebSocket connections, paid services, or
-  code from unknown sources.
+- External project data and assets may be downloaded during development, but save them
+  in the project's `assets/` folder. At runtime, load project content locally and do not
+  call external APIs or open live connections. Pinned library CDN files and external
+  fonts are the only remote exceptions. Do not add paid services or code from unknown
+  sources.
 
 ## Project boundaries
 

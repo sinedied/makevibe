@@ -20,12 +20,14 @@ deployment artifact.
    - No PII appears in source, visible text, data, filenames, media, or media metadata.
      A first name or nickname is allowed only if the child explicitly chose it for this
      app.
-   - There are no forms that send data, accounts, payments, ads, analytics, trackers,
-     external APIs, `fetch`, XMLHttpRequest, WebSocket, or sensitive browser permissions.
+   - There are no accounts, payments, ads, analytics, trackers, forms that collect
+     personal data, or sensitive browser permissions.
    - Every dependency is necessary, free and open source, and loaded from a reputable
      HTTPS CDN with an exact stable version. Reject `@latest` and unversioned URLs.
-   - Assets are appropriate, owned or safe to reuse, free of identifying metadata, and
-     contain no active scripts or unexpected external content.
+   - Project data and assets are appropriate, owned or safe to reuse, free of identifying
+     metadata, contain no active scripts, and load locally. The app makes no external API
+     or live connection; pinned library CDN files and external fonts are the only remote
+     exceptions.
    - Multi-view SPA navigation uses URL hashes and does not depend on server fallback
      for history-based paths.
    - The app works with keyboard controls, readable contrast, mobile layout, and reduced
