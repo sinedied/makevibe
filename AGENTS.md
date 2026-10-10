@@ -53,9 +53,19 @@ message. Keep code identifiers in simple English unless the child asks otherwise
   fonts are the only remote exceptions. Do not add paid services or code from unknown
   sources.
 
+## Workspace boundary
+
+- Never intentionally read, create, edit, move, or delete any local path outside this
+  repository.
+- The only path exception is the agent session folder, when available, for plans, scratch
+  artifacts, and session state. Automatic tool-managed caches and temporary files are
+  allowed side effects, but do not target or inspect them.
+- Create and modify every app only under `projects/`.
+
 ## Project boundaries
 
-Normal app work is limited to one active folder: `projects/<project-slug>/`.
+Inside this repository, normal app work is limited to one active folder:
+`projects/<project-slug>/`.
 
 Every project keeps these four root files:
 
