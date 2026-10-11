@@ -89,7 +89,7 @@ h1 {
 }
 
 .play-area button:focus-visible {
-  outline: 4px solid #ffd166;
+  outline: 4px solid #253237;
   outline-offset: 3px;
 }
 
@@ -110,5 +110,7 @@ h1 {
   *::after {
     scroll-behavior: auto !important;
     transition: none !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

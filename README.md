@@ -86,7 +86,7 @@ exact stable version.
 
 ## Run projects locally
 
-Install [Node.js](https://nodejs.org/) 20.19 or newer, then install the root development
+Install [Node.js](https://nodejs.org/) 20.19+ or 22.12+, then install the root development
 tool once:
 
 ```bash
@@ -108,18 +108,25 @@ Then open the project URL MakeVibe gives you, such as
 
 ## Publish with permission
 
-1. In **Settings > Pages**, choose **GitHub Actions** as the source.
-2. In an interactive conversation, ask MakeVibe to publish a project.
-3. MakeVibe checks safety, privacy, accessibility, and the production build.
-4. The child gives explicit final approval.
-5. MakeVibe adds the project to `projects/published-projects.json` and records its public
+1. In an interactive conversation, ask MakeVibe to publish a project.
+2. MakeVibe checks safety, privacy, accessibility, and the production build.
+3. The child gives explicit final approval.
+4. MakeVibe adds the project to `projects/published-projects.json` and records its public
    link in the table above.
-6. When that commit reaches the default branch, GitHub Actions deploys the approved
-   projects automatically.
+5. When that commit reaches the default branch, GitHub Actions deploys the approved
+   projects. Later changes to a published app deploy the same way until it is
+   unpublished.
 
-Publishing never runs from autopilot, plan, background, or unattended work. Removing a
-project from the publication list removes it from the next Pages deployment while keeping
-its private source and Git history.
+Publication status only changes in an interactive conversation. Unpublishing removes the
+app from the next deployment while keeping its private source and Git history.
+
+> [!NOTE]
+> **Turn publishing on:** in **Settings > Pages**, set the source to **GitHub Actions**.
+> Pages from a private repository requires GitHub Pro, Team, or Enterprise.
+>
+> **Turn publishing off:** disable the **Deploy published projects** workflow in the
+> **Actions** tab and unpublish the site in **Settings > Pages**. If you never plan to
+> publish, disable the workflow so pushes don't create failed runs.
 
 ## How the repository is organized
 

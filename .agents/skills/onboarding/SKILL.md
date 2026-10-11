@@ -9,11 +9,11 @@ Set up the child-friendly preferences in the managed profile block of `AGENTS.md
 
 ## Procedure
 
-1. Do not run unattended or in autopilot. Explain in one short sentence that you will
-   ask a few questions to make MakeVibe feel right for them.
+1. If unattended or in autopilot, stop and ask to continue interactively. Otherwise,
+   explain in one short sentence that you will ask a few questions.
 2. Confirm that the repository is private before collecting answers. If privacy cannot
    be verified, ask a parent or guardian to confirm. Stop if the repository is public.
-3. Ask one short question, wait for the answer, then ask the next:
+3. Ask, one at a time:
    - A nickname that is not their full name. They may skip it.
    - An age range, not an exact age: `under 8`, `8-10`, `11-13`, or `14-17`.
    - The language MakeVibe should use.
@@ -36,9 +36,4 @@ rules.
 
 ## Gotchas
 
-- A Pages site can be public even when its source repository is private. Never copy
-  profile data into a project automatically. A first name or nickname may appear only
-  when the child explicitly asks to use it in that app, with a separate warning before
-  publication.
-- Do not infer age, language, or identity from writing style.
-- Onboarding consent is not publishing consent.
+- Record only values the child states.

@@ -31,7 +31,7 @@ message. Keep code identifiers in simple English unless the child asks otherwise
   metadata.
 - A first name or nickname is the only exception, and only when the child explicitly
   asks to use it in the active app. Never copy the onboarding nickname automatically.
-  Before publishing, state clearly that the chosen name will become public.
+  Before a chosen name becomes public, say so clearly.
 - Do not create adult, sexual, hateful, harassing, graphic, cruel, exploitative,
   gambling, dating, self-harm, dangerous, or violent content. Do not use
   offensive language.
@@ -44,9 +44,9 @@ message. Keep code identifiers in simple English unless the child asks otherwise
 - Apps must work entirely in the browser. Do not add server code, databases, secrets,
   package installation, or build configuration inside a project.
 - Prefer browser APIs before adding a dependency. When a library materially reduces
-  complexity, use the create-project skill's library reference, verify its current stable
-  version and free open-source license, and pin that exact version on a reputable HTTPS
-  CDN. Never use `@latest` or an unversioned URL.
+  complexity, use `.agents/skills/create-project/references/libraries.md`, verify its
+  current stable version and free open-source license, and pin that exact version on a
+  reputable HTTPS CDN. Never use `@latest` or an unversioned URL.
 - External project data and assets may be downloaded during development, but save them
   in the project's `assets/` folder. At runtime, load project content locally and do not
   call external APIs or open live connections. Pinned library CDN files and external
@@ -64,8 +64,8 @@ message. Keep code identifiers in simple English unless the child asks otherwise
 
 ## Project boundaries
 
-Inside this repository, normal app work is limited to one active folder:
-`projects/<project-slug>/`.
+Normal app work is limited to one active project folder and its row in the root
+`README.md` projects table.
 
 Every project keeps these four root files:
 
@@ -90,7 +90,7 @@ simple-to-complex refactor, not a hard limit. Propose what would move and confir
 adding `modules/` to an existing project. An `assets/` folder does not make a project
 complex.
 
-Do not edit another project. Do not create other root files or folders. Never create
+Do not edit or reference another project. Do not create other root files or folders. Never create
 links inside `modules/` or `assets/`; use regular files and folders only.
 
 GitHub Pages does not provide a general fallback for SPA history routes. When an app
@@ -100,10 +100,8 @@ needs client-side views, use hash routes such as `#/gallery`; do not rely on
 Only these skills may cross the normal boundary:
 
 - `onboarding` may update only the managed profile block in this file.
-- `create-project` may create one new project from its bundled template and update only
-  the marked projects table in the root `README.md`.
-- `publish-project` may update `projects/published-projects.json` and only the marked
-  projects table in the root `README.md`.
+- `create-project` may create one new project from its bundled template.
+- `publish-project` may update `projects/published-projects.json`.
 
 Template maintenance is a separate exception: when a maintainer explicitly asks to
 change MakeVibe itself rather than an app, the requested repository files may be edited.
@@ -114,9 +112,9 @@ change MakeVibe itself rather than an app, the requested repository files may be
 - Explain new ideas with simple words and small steps. Let the child make creative
   decisions instead of taking over.
 - Make the smallest complete change that delivers what they asked for.
-- Default to a simple project. Ask before undertaking or converting to a complex one.
 - Keep apps responsive, keyboard-friendly, readable, and usable with reduced motion.
-- Never publish in plan, autopilot, unattended, or background operation.
+- Change publication status only interactively. Later commits to a published project
+  deploy automatically.
 
 ## Commits
 
@@ -127,4 +125,5 @@ understand and undo.
 - Stage only the active project's files and an explicitly allowed bookkeeping file.
 - Never use blanket staging, rewrite history, or include unrelated work.
 - Use a short message such as `feat(project-slug): add the score counter`.
-- If validation fails, fix it before committing and do not claim the change is complete.
+- If validation fails in the active project, fix it before committing; report failures
+  elsewhere.

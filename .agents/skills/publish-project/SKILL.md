@@ -13,9 +13,8 @@ deployment artifact.
 
 1. Stop if the current operation is plan, autopilot, unattended, or background. Tell the
    child publishing needs a new interactive request.
-2. Confirm the requested `projects/<slug>/` exists, contains the four required root
-   files, and has no root entries except optional `modules/` and `assets/`.
-3. Review every root and nested file before asking for approval:
+2. Confirm `projects/<slug>/` has no uncommitted changes, then review every root and nested
+   file before asking for approval:
    - Content is age-appropriate and follows `AGENTS.md`.
    - No PII appears in source, visible text, data, filenames, media, or media metadata.
      A first name or nickname is allowed only if the child explicitly chose it for this
@@ -32,11 +31,14 @@ deployment artifact.
      for history-based paths.
    - The app works with keyboard controls, readable contrast, mobile layout, and reduced
      motion where motion is present.
-4. Run `npm run build`. Fix project problems inside its allowed project boundary before
-   continuing. Do not publish if review or validation fails.
-5. Explain in one short sentence that the app and its visible content will be public.
-   If an allowed first name or nickname appears, name it explicitly and say it will be
-   public. Ask for final approval naming the project. Do not reuse an older approval.
+3. Run `npm run build`. If the project needs fixes, make, validate, and commit them
+   separately, then restart the review. Do not publish if review or validation fails.
+4. Derive the Pages URL from the GitHub remote: `https://owner.github.io/repo/<slug>/`, or
+   `https://owner.github.io/<slug>/` for an `owner.github.io` repository. Ask a maintainer
+   for custom domains or GitHub Enterprise.
+5. Say in one short sentence that the app will be public at that URL, which shows the
+   GitHub account and repository names. Name any allowed first name or nickname that
+   appears. Ask for final approval naming the project. Do not reuse an older approval.
 6. After approval, add or update one entry in `projects/published-projects.json`:
 
    ```json
@@ -49,12 +51,9 @@ deployment artifact.
 
    Keep entries sorted by slug. On the first publication, also set `site.language` to a
    short BCP 47 language code and translate `site.emptyMessage` into the child's selected
-   language. Keep `site.heading` as `MakeVibe`. Do not copy profile data automatically.
-7. Update only the matching row inside the marked projects table in the root `README.md`.
-   Derive the Pages URL from the GitHub remote. For `owner/repo`, use
-   `https://owner.github.io/repo/<slug>/`; for `owner.github.io`, use
-   `https://owner.github.io/<slug>/`. Ask a maintainer for the base URL on GitHub
-   Enterprise or when a custom domain is configured.
+   language. Keep `site.heading` as `MakeVibe`.
+7. Update only the matching row in the marked projects table of the root `README.md` with
+   the public URL.
 8. Run `npm run build` again and confirm `dist/<slug>/index.html` exists.
 9. Commit only the project manifest and root README with
    `publish(<slug>): approve public release`.
@@ -74,6 +73,4 @@ deployment artifact.
 
 ## Gotchas
 
-- A published project's approval stays active for later commits until it is unpublished.
-- Creating or editing a project is never implicit publishing approval.
 - Never push, merge, or change repository visibility without a separate explicit request.
