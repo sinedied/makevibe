@@ -1,7 +1,16 @@
 :root {
-  color: #253237;
-  background: #f6f1e7;
-  font-family: "Trebuchet MS", "Avenir Next", sans-serif;
+  --ink: #253237;
+  --page: #f6f1e7;
+  --paper: #fffdf8;
+  --accent: #bc4749;
+  --line: #457b9d;
+  --sun: #ffd166;
+  --sky: #7bdff2;
+  --font: "Trebuchet MS", "Avenir Next", sans-serif;
+
+  color: var(--ink);
+  background: var(--page);
+  font-family: var(--font);
   font-synthesis: none;
 }
 
@@ -17,9 +26,9 @@ body {
   place-items: center;
   padding: 1.5rem;
   background:
-    radial-gradient(circle at 20% 15%, #ffd166 0 4rem, transparent 4.1rem),
-    radial-gradient(circle at 85% 85%, #7bdff2 0 6rem, transparent 6.1rem),
-    #f6f1e7;
+    radial-gradient(circle at 20% 15%, var(--sun) 0 4rem, transparent 4.1rem),
+    radial-gradient(circle at 85% 85%, var(--sky) 0 6rem, transparent 6.1rem),
+    var(--page);
 }
 
 button {
@@ -29,10 +38,10 @@ button {
 .app {
   width: min(42rem, 100%);
   padding: clamp(1.5rem, 5vw, 3.5rem);
-  border: 3px solid #253237;
+  border: 3px solid var(--ink);
   border-radius: 1.5rem 0.4rem 1.5rem 0.4rem;
-  background: #fffdf8;
-  box-shadow: 0.7rem 0.7rem 1.2rem rgb(37 50 55 / 22%);
+  background: var(--paper);
+  box-shadow: 0.7rem 0.7rem 0 var(--ink);
 }
 
 h1,
@@ -46,6 +55,8 @@ h1 {
   margin-bottom: 1rem;
   font-size: clamp(2.5rem, 9vw, 5rem);
   line-height: 0.95;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 .intro {
@@ -57,28 +68,28 @@ h1 {
 .play-area {
   margin-top: 2rem;
   padding-top: 1.25rem;
-  border-top: 2px dashed #457b9d;
+  border-top: 2px dashed var(--line);
 }
 
 .play-area button {
   min-height: 3rem;
   padding: 0.65rem 1.1rem;
-  border: 2px solid #253237;
+  border: 2px solid var(--ink);
   border-radius: 999px;
-  color: #fffdf8;
-  background: #bc4749;
-  box-shadow: 0.2rem 0.2rem 0.45rem rgb(37 50 55 / 28%);
+  color: var(--paper);
+  background: var(--accent);
+  box-shadow: 0.2rem 0.2rem 0 var(--ink);
   cursor: pointer;
   font-weight: 800;
 }
 
 .play-area button:hover {
   transform: translate(-0.1rem, -0.1rem);
-  box-shadow: 0.3rem 0.3rem 0.6rem rgb(37 50 55 / 28%);
+  box-shadow: 0.3rem 0.3rem 0 var(--ink);
 }
 
 .play-area button:focus-visible {
-  outline: 4px solid #253237;
+  outline: 4px solid var(--ink);
   outline-offset: 3px;
 }
 

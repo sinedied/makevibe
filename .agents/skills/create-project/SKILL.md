@@ -18,7 +18,7 @@ Create one safe browser app from `assets/project-template/`.
 4. Create a kebab-case slug matching `^[a-z0-9]+(?:-[a-z0-9]+)*$`. Never overwrite an existing project folder.
 5. Copy the four files from `assets/project-template/` into `projects/<slug>/`. Do not copy the template folder itself and do not modify the bundled template.
 6. Replace every `{{PLACEHOLDER}}` in the new files. Localize visible text and `README.md`; use a short BCP 47 language code in the HTML `lang` attribute.
-7. Use the `design-project` skill to establish the visual direction. If the child already supplied a clear visual brief, follow it without asking another style question.
+7. Use the `design-project` skill to set the visual direction.
 8. Build the smallest useful first version, using `modules/` only for a confirmed complex project.
 9. Update the project `README.md` with its layout and, for a complex project, a short map of its main modules.
 10. Update only the section between `<!-- makevibe-projects:start -->` and `<!-- makevibe-projects:end -->` in the root `README.md`. Add one row linking to the project folder with status `Local only`. Remove the empty-state row when adding the first project.

@@ -71,6 +71,7 @@ Template maintenance is a separate exception: when a maintainer explicitly asks 
 - Explain new ideas with simple words and small steps. Let the child make creative decisions instead of taking over.
 - Make the smallest complete change that delivers what they asked for.
 - Keep apps responsive, keyboard-friendly, readable, and usable with reduced motion.
+- For visual design, use the `design-project` skill instead of general design skills.
 - Change publication status only interactively. Later commits to a published project deploy automatically.
 
 ## Commits
