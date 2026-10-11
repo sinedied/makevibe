@@ -1,5 +1,5 @@
 import { cpSync, existsSync, readFileSync, readdirSync } from "node:fs";
-import { extname, resolve } from "node:path";
+import { basename, extname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 
@@ -17,10 +17,12 @@ const requiredProjectFiles = [
   "styles.css",
 ];
 const optionalProjectDirectories = new Set(["assets", "modules"]);
+const ignoredFileNames = new Set([".DS_Store", "Thumbs.db"]);
 const moduleExtensions = new Set([".css", ".html", ".js"]);
 const assetExtensions = new Set([
   ".aac",
   ".avif",
+  ".bin",
   ".csv",
   ".geojson",
   ".gif",
@@ -37,8 +39,10 @@ const assetExtensions = new Set([
   ".obj",
   ".ogg",
   ".ogv",
+  ".otf",
   ".png",
   ".svg",
+  ".ttf",
   ".txt",
   ".vtt",
   ".wav",
@@ -171,7 +175,10 @@ function validateProjectFolders(publishedProjects) {
   const projectSlugs = new Set();
 
   for (const entry of entries) {
-    if (entry.isFile() && entry.name === "published-projects.json") {
+    if (
+      ignoredFileNames.has(entry.name) ||
+      (entry.isFile() && entry.name === "published-projects.json")
+    ) {
       continue;
     }
 
@@ -190,6 +197,10 @@ function validateProjectFolders(publishedProjects) {
     let codeLineCount = 0;
 
     for (const projectEntry of projectEntries) {
+      if (ignoredFileNames.has(projectEntry.name)) {
+        continue;
+      }
+
       const projectPath = `${entry.name}/${projectEntry.name}`;
 
       if (projectEntry.isFile()) {
@@ -269,6 +280,10 @@ function validateNestedDirectory(projectSlug, directoryName, allowedExtensions) 
     const entries = readdirSync(currentDirectory, { withFileTypes: true });
 
     for (const entry of entries) {
+      if (ignoredFileNames.has(entry.name)) {
+        continue;
+      }
+
       const relativePath = `${relativeDirectory}/${entry.name}`;
       const fullPath = resolve(currentDirectory, entry.name);
 
@@ -385,7 +400,7 @@ function renderPublishedIndex(manifest) {
       ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 1.25rem; margin: 0; padding: 0; list-style: none; }
       a, .empty { min-height: 10rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; padding: 1.25rem; border: 3px solid currentColor; border-radius: 1.2rem 0.3rem 1.2rem 0.3rem; color: inherit; background: #fffdf8; box-shadow: 0.45rem 0.45rem 0 currentColor; text-decoration: none; }
       a:hover { transform: translate(-0.12rem, -0.12rem); box-shadow: 0.57rem 0.57rem 0 currentColor; }
-      a:focus-visible { outline: 5px solid #e85d75; outline-offset: 5px; }
+      a:focus-visible { outline: 5px solid #9d174d; outline-offset: 5px; }
       strong { font-size: 1.5rem; }
       span { line-height: 1.5; }
       .empty { justify-content: center; border-style: dashed; box-shadow: none; }
@@ -442,18 +457,20 @@ function makeIndexPlugin(manifest) {
       });
     },
     writeBundle() {
+      // Vite does not bundle classic scripts or files referenced only from modules/.
+      const copiedNames = ["script.js", "styles.css", ...optionalProjectDirectories];
+
       for (const project of manifest.projects) {
-        for (const directoryName of optionalProjectDirectories) {
-          const source = resolve(projectsRoot, project.slug, directoryName);
+        for (const name of copiedNames) {
+          const source = resolve(projectsRoot, project.slug, name);
           if (!existsSync(source)) {
             continue;
           }
 
-          cpSync(
-            source,
-            resolve(repositoryRoot, "dist", project.slug, directoryName),
-            { recursive: true },
-          );
+          cpSync(source, resolve(repositoryRoot, "dist", project.slug, name), {
+            recursive: true,
+            filter: (path) => !ignoredFileNames.has(basename(path)),
+          });
         }
       }
     },
