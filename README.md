@@ -7,10 +7,9 @@
 
 [![Use this template](https://img.shields.io/badge/Use_this_template-181717?style=flat-square&logo=github)](https://github.com/sinedied/makevibe/generate)
 [![Kid-safe and browser-only](https://img.shields.io/badge/Kid--safe-Browser--only-2a9d8f?style=flat-square)](#made-for-safe-exploring)
-[![GitHub Pages ready](https://img.shields.io/badge/GitHub_Pages-ready-222222?style=flat-square&logo=githubpages)](#publish-with-permission)
 [![MIT License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
 
-[Start a project](#start-making) &middot; [Safety](#made-for-safe-exploring) &middot; [Projects](#projects) &middot; [Publish](#publish-with-permission)
+[Start a project](#start-making) &middot; [Safety](#made-for-safe-exploring) &middot; [Parents' guide](#parents-guide) &middot; [Projects](#projects) &middot; [Publish](#publish-with-permission)
 
 </div>
 
@@ -45,18 +44,9 @@ script.js     interactions
 README.md     what the project does and what was learned
 ```
 
-Most ideas fit this **simple project** layout. Either project type may add `assets/` when it needs browser-safe images, sounds, video, fonts, 3D models, or data.
-
-When an idea clearly needs more structure, MakeVibe explains that it may take longer and asks before turning it into a **complex project**. A complex project keeps the same four root entry files and adds `modules/` for nested HTML, CSS, and JavaScript. It is a refactor of the same starter, not a second template.
-
-Around 5,000 lines of HTML, CSS, and JavaScript is a prompt to discuss readability and possible refactoring, not a strict build quota.
-
-> [!CAUTION]
-> Never put PII such as a full name, exact age or birthday, address, school, phone number, email, account name, precise location, identifying photo, or embedded location metadata in a project. A first name or nickname is allowed only when the child explicitly chooses to use it, and publication makes that name public.
-
 MakeVibe prefers plain browser features. When a library clearly helps, its compact agent reference suggests free open-source options loaded from a reputable HTTPS CDN with an exact stable version.
 
-## Quick guide for parents
+## Parents' guide
 
 - Stay involved, especially before an app is published.
 - Help the child avoid sharing personal information in projects.
