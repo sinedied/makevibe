@@ -12,16 +12,12 @@ MakeVibe is a GitHub repository template for presentations, friendly games,
 visualizations, interactive stories, educational tools, and simple utilities. Each app
 is plain HTML, CSS, and JavaScript, so it stays easy to inspect, understand, and undo.
 
-> [!IMPORTANT]
-> Create the repository as **private**. A published GitHub Pages app is public, but
-> MakeVibe's build includes only projects that the child has explicitly approved.
-
 ## Made for safe exploring
 
 - **Kid-sized conversations:** one short question at a time, in the child's chosen
   language and tone.
 - **Privacy-aware onboarding:** stores only a nickname, age range, language, tone, and
-  interests in a private repository. Projects exclude personal details beyond a first
+  interests. Projects exclude personal details beyond a first
   name or nickname the child explicitly chooses to use.
 - **Small first, structured when needed:** every app starts with four readable files and
   adds modules only after the child confirms the extra complexity.
@@ -72,10 +68,6 @@ MakeVibe prefers plain browser features. When a library clearly helps, its compa
 reference suggests free open-source options loaded from a reputable HTTPS CDN with an
 exact stable version.
 
-> [!IMPORTANT]
-> GitHub Pages cannot serve `index.html` as a fallback for arbitrary SPA paths. Apps with
-> client-side views use hash URLs such as `#/gallery`, which still work after a reload.
-
 ## Projects
 
 <!-- makevibe-projects:start -->
@@ -103,7 +95,7 @@ Then open the project URL MakeVibe gives you, such as
 `http://localhost:5173/my-first-project/`.
 
 > [!TIP]
-> Packages are only for the repository's development tools. Never run `npm install`
+> Packages are only for the repository's development tools. You don't need to run `npm install`
 > inside a project folder.
 
 ## Publish with permission
@@ -127,34 +119,6 @@ app from the next deployment while keeping its private source and Git history.
 > **Turn publishing off:** disable the **Deploy published projects** workflow in the
 > **Actions** tab and unpublish the site in **Settings > Pages**. If you never plan to
 > publish, disable the workflow so pushes don't create failed runs.
-
-## How the repository is organized
-
-```text
-AGENTS.md
-  MakeVibe's language, safety, file-boundary, and commit rules
-
-.agents/skills/
-  onboarding/       private, child-friendly setup
-  create-project/   project workflow, starter asset, and curated library reference
-  publish-project/  explicit public approval and unpublishing
-
-projects/
-  published-projects.json  the public deployment allowlist
-  <project-name>/
-    index.html              stable page entry
-    styles.css              stable style entry
-    script.js               stable JavaScript entry
-    README.md               project guide and module map
-    assets/                 optional media and data
-    modules/                optional, confirmed complex structure
-
-vite.config.js
-  validates every project and builds only published ones
-
-.github/workflows/deploy-pages.yml
-  deploys the allowlisted build from the default branch
-```
 
 The Pages landing page is generated during the build from the publication manifest. It
 is not another project and adds no hand-maintained HTML, CSS, or JavaScript to
