@@ -1,8 +1,14 @@
+<!-- makevibe-overview:start -->
 <div align="center">
 
 # MakeVibe
 
 **A safe little workshop where kids can learn by making web apps with AI.**
+
+[![Use this template](https://img.shields.io/badge/Use_this_template-181717?style=flat-square&logo=github)](https://github.com/sinedied/makevibe/generate)
+[![Kid-safe and browser-only](https://img.shields.io/badge/Kid--safe-Browser--only-2a9d8f?style=flat-square)](#made-for-safe-exploring)
+[![GitHub Pages ready](https://img.shields.io/badge/GitHub_Pages-ready-222222?style=flat-square&logo=githubpages)](#publish-with-permission)
+[![MIT License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
 
 [Start a project](#start-making) &middot; [Safety](#made-for-safe-exploring) &middot; [Projects](#projects) &middot; [Publish](#publish-with-permission)
 
@@ -18,15 +24,15 @@ MakeVibe is a GitHub repository template for presentations, friendly games, visu
 - **Child-led design:** the child chooses the app's visual direction while MakeVibe applies responsive, accessible defaults.
 - **Browser-only:** no servers, databases, project packages, accounts, ads, analytics, or personal-data collection.
 - **Easy to undo:** every coherent change gets a clear Git commit.
-- **Private until approved:** only projects listed in `projects/published-projects.json` enter the public build.
+- **Published only when approved:** only projects listed in `projects/published-projects.json` enter the GitHub Pages build.
 
 > [!NOTE]
 > AI guardrails reduce risk but cannot guarantee perfect results. A parent, guardian, or teacher should stay involved, especially before anything is published.
 
 ## Start making
 
-1. Use this repository as a GitHub template and choose **Private**.
-2. Open it with GitHub Copilot in the app, an editor, or the CLI.
+1. Click **[Use this template](https://github.com/sinedied/makevibe/generate)** to create your MakeVibe repository.
+2. Open it in your favorite coding agent, such as the [GitHub Copilot app](https://github.com/copilot).
 3. Say **"Let's get started"**. The onboarding skill asks a few short questions.
 4. Say what you want to make, or ask for three ideas.
 
@@ -49,6 +55,14 @@ Around 5,000 lines of HTML, CSS, and JavaScript is a prompt to discuss readabili
 > Never put PII such as a full name, exact age or birthday, address, school, phone number, email, account name, precise location, identifying photo, or embedded location metadata in a project. A first name or nickname is allowed only when the child explicitly chooses to use it, and publication makes that name public.
 
 MakeVibe prefers plain browser features. When a library clearly helps, its compact agent reference suggests free open-source options loaded from a reputable HTTPS CDN with an exact stable version.
+
+## Quick guide for parents
+
+- Stay involved, especially before an app is published.
+- Help the child avoid sharing personal information in projects.
+- Disable other agent skills that overlap with project creation, design, onboarding, or publishing so they do not override MakeVibe's repository instructions.
+
+<!-- makevibe-overview:end -->
 
 ## Projects
 

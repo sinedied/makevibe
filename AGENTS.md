@@ -59,7 +59,7 @@ GitHub Pages does not provide a general fallback for SPA history routes. When an
 
 Only these skills may cross the normal boundary:
 
-- `onboarding` may update only the managed profile block in this file.
+- `onboarding` may update only the managed profile block in this file and the marked overview in the root `README.md`.
 - `create-project` may create one new project from its bundled template.
 - `publish-project` may update `projects/published-projects.json`.
 
