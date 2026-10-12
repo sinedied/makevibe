@@ -9,7 +9,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dev:website": "vite website",
+    "build:website": "vite build website --base ./ --outDir ../dist --emptyOutDir",
+    "preview:website": "vite preview website --outDir ../dist"
   },
   "devDependencies": {
     "vite": "8.3.4"
